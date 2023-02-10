@@ -1,0 +1,71 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul,ol{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+html{
+  scroll-behavior: smooth;
+  height: 100%;
+}
+a{
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+.btn{
+  &:active,
+  &:focus{
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+}
+.btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
+  border-color: transparent !important;
+}
+body{
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  font-family: $base-font;
+  background-color: $white;
+  color: $white;
+  -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+
+}
+
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #ddd;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ddd
+}
+/* Handle on hover */
+*::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 5px;
+}
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+  background: #33475B;
+}
