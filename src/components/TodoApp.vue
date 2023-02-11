@@ -12,6 +12,7 @@ export default {
   },
   data() {
     return {
+      buttonTxt: true,
       task: '',
       category: '',
       editedTask: null,
@@ -37,10 +38,10 @@ export default {
       }
     }
   },
-  methods:{
+  methods: {
     addTaskHandler() {
       if(this.task === '' || this.category === '') {
-        this.taskMessage = 'Please add task';
+        this.taskMessage = 'Please add a task';
         this.taskStatus = 'task-empty';
         return false
       }
@@ -51,7 +52,7 @@ export default {
         });
         this.task = '';
         this.category = '';
-        this.taskMessage = 'Task Added Successfully';
+        this.taskMessage = 'Task added successfully';
         this.taskStatus = 'task-add';
       }
       else {
@@ -60,18 +61,20 @@ export default {
         this.editedTask = null;
         this.task = '';
         this.category = '';
-        this.taskMessage = 'Task Update Successfully';
+        this.taskMessage = 'Task update successfully';
         this.taskStatus = 'task-update';
+        this.buttonTxt = true
       }
     },
     editTaskHandler(index) {
       this.task = this.tasks[index].name
       this.category = this.tasks[index].category
-      this.editedTask = index;
+      this.buttonTxt = false
+      this.editedTask = index
     },
     deleteTaskHandler(index) {
       this.tasks.splice(index,1);
-      this.taskMessage = 'Task Delete Successfully';
+      this.taskMessage = 'Task delete successfully';
       this.taskStatus = 'task-delete';
     },
     removeToast(){
