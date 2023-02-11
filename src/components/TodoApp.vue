@@ -26,9 +26,9 @@ export default {
       this.tasks = JSON.parse(localStorage.tasks)
     }
     let that = this;
-    setTimeout(function (){
+    setInterval(function (){
       that.removeToast();
-    },5000)
+    },10000)
   },
   watch:{
     tasks: {
