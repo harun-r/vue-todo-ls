@@ -24,13 +24,17 @@ export default {
     if(localStorage.tasks){
       this.tasks = JSON.parse(localStorage.tasks)
     }
+    let that = this;
+    setTimeout(function (){
+      that.removeToast();
+    },5000)
   },
   watch:{
     tasks: {
+      deep: true,
       handler(newTasks) {
         localStorage.tasks = JSON.stringify(newTasks)
-      },
-      deep: true,
+      }
     }
   },
   methods:{
@@ -70,6 +74,9 @@ export default {
       this.taskMessage = 'Task Delete Successfully';
       this.taskStatus = 'task-delete';
     },
+    removeToast(){
+      this.taskMessage = ''
+    }
   },
 
 }
