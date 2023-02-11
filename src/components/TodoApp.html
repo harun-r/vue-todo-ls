@@ -1,0 +1,39 @@
+<div class="todo-app">
+    <div class="center">
+        <div class="header">
+            <h3>Add your Todo List</h3>
+        </div>
+        <div class="add-task">
+            <input type="text" placeholder="Write the task" v-model="task">
+            <button class="btn btn-task" @click="addTaskHandler">Add Task</button>
+        </div>
+        <div class="task-category-wrap">
+            <div class="task-category">
+                <span class="bubble business"></span>
+                <input type="radio" name="category" value="Business" id="business" v-model="category">
+                <label for="business">Business</label>
+            </div>
+            <div class="task-category">
+                <span class="bubble personal"></span>
+                <input type="radio" name="category" value="Personal" id="personal" v-model="category">
+                <label for="personal">Personal</label>
+            </div>
+        </div>
+        <div class="task-list-wrap">
+            <div class="task-list" v-for="(task, index) in tasks" :key="index">
+                <div class="task-item">
+                    <span>{{ task.name }}</span>
+                </div>
+                <div class="task-item">
+                    <span>{{ task.category }}</span>
+                </div>
+                <div class="task-item">
+                    <div class="action-wrap">
+                        <button class="btn btn-edit" @click="editTaskHandler(index)">Edit</button>
+                        <button class="btn btn-delete" @click="deleteTaskHandler(index)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
