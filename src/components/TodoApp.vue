@@ -1,4 +1,3 @@
-<template src="./TodoApp.html"></template>
 <script>
 import IconEdit from "@/components/svg-icons/icon-edit/IconEdit.vue";
 import IconDelete from "@/components/svg-icons/icon-delete/IconDelete.vue";
@@ -12,13 +11,26 @@ export default {
     IconDelete
   },
   data() {
-    return{
+    return {
       task: '',
       category: '',
       editedTask: null,
       taskMessage: '',
       taskStatus: '',
       tasks: [],
+    }
+  },
+  mounted() {
+    if(localStorage.tasks){
+      this.tasks = JSON.parse(localStorage.tasks)
+    }
+  },
+  watch:{
+    tasks: {
+      handler(newTasks) {
+        localStorage.tasks = JSON.stringify(newTasks)
+      },
+      deep: true,
     }
   },
   methods:{
@@ -28,26 +40,24 @@ export default {
         this.taskStatus = 'task-empty';
         return false
       }
+      if(this.editedTask === null) {
+        this.tasks.push({
+          name: this.task,
+          category: this.category
+        });
+        this.task = '';
+        this.category = '';
+        this.taskMessage = 'Task Added Successfully';
+        this.taskStatus = 'task-add';
+      }
       else {
-        if(this.editedTask === null) {
-          this.tasks.push({
-            name: this.task,
-            category: this.category
-          });
-          this.task = '';
-          this.category = '';
-          this.taskMessage = 'Task Added Successfully';
-          this.taskStatus = 'task-add';
-        }
-        else {
-          this.tasks[this.editedTask].name = this.task;
-          this.tasks[this.editedTask].category = this.category;
-          this.editedTask = null;
-          this.task = '';
-          this.category = '';
-          this.taskMessage = 'Task Update Successfully';
-          this.taskStatus = 'task-update';
-        }
+        this.tasks[this.editedTask].name = this.task;
+        this.tasks[this.editedTask].category = this.category;
+        this.editedTask = null;
+        this.task = '';
+        this.category = '';
+        this.taskMessage = 'Task Update Successfully';
+        this.taskStatus = 'task-update';
       }
     },
     editTaskHandler(index) {
@@ -60,6 +70,8 @@ export default {
       this.taskMessage = 'Task Delete Successfully';
       this.taskStatus = 'task-delete';
     },
-  }
+  },
+
 }
 </script>
+<template src="./TodoApp.html"></template>
