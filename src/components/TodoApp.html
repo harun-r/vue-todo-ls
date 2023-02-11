@@ -7,7 +7,7 @@
             <h3>Todos</h3>
         </div>
         <div class="add-task">
-            <input type="text" placeholder="Write the task" v-model="task">
+            <input type="text" placeholder="Write a task" v-model="task">
             <button class="btn btn-task" @click="addTaskHandler">{{buttonTxt?'Add task':'Update task'}}</button>
         </div>
         <div class="task-category-wrap" :class="category+'-item'">
