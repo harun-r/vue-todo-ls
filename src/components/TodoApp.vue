@@ -40,13 +40,19 @@ export default {
   },
   methods: {
     addTaskHandler() {
-      if(this.task === '' || this.category === '') {
-        this.taskMessage = 'Please add a task';
+      if( this.task === '' ) {
+        this.taskMessage = 'Add a task name';
         this.taskStatus = 'task-empty';
         return false
       }
+      if( this.category === '' ){
+        this.taskMessage = 'Add a task category';
+        this.taskStatus = 'task-empty';
+        return false
+      }
+
       if(this.editedTask === null) {
-        this.tasks.push({
+        this.tasks.unshift({
           name: this.task,
           category: this.category
         });
@@ -62,7 +68,7 @@ export default {
         this.task = '';
         this.category = '';
         this.taskMessage = 'Task update successfully';
-        this.taskStatus = 'task-update';
+        this.taskStatus = 'task-add';
         this.buttonTxt = true
       }
     },

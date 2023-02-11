@@ -7,7 +7,7 @@
             <h3>Todos</h3>
         </div>
         <div class="add-task">
-            <input type="text" placeholder="Write a task" v-model="task">
+            <input type="text" placeholder="Task name" v-model="task">
             <button class="btn btn-task" @click="addTaskHandler">{{buttonTxt?'Add task':'Update task'}}</button>
         </div>
         <div class="task-category-wrap" :class="category+'-item'">
@@ -46,7 +46,7 @@
             <div class="icon">
                 <IconFile />
             </div>
-            <h3>Add your first todo</h3>
+            <h3>Add your first task</h3>
         </div>
     </div>
 </div>
