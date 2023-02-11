@@ -8,35 +8,50 @@ export default {
       task: '',
       category: '',
       editedTask: null,
+      taskMessage: '',
+      taskStatus: '',
       tasks: []
     }
   },
   methods:{
     addTaskHandler() {
-
-      if(this.editedTask === null) {
-        this.tasks.push({
-          name: this.task,
-          category: this.category
-        });
+      if(this.task === '' || this.category === '') {
+        this.taskMessage = 'Please add task';
+        this.taskStatus = 'task-empty';
+        return false
       }
       else {
-        this.tasks[this.editedTask].name = this.task;
-        this.tasks[this.editedTask].category = this.category;
-        this.editedTask = null;
+        if(this.editedTask === null) {
+          this.tasks.push({
+            name: this.task,
+            category: this.category
+          });
+          this.task = '';
+          this.category = '';
+          this.taskMessage = 'Task Added Successfully';
+          this.taskStatus = 'task-add';
+        }
+        else {
+          this.tasks[this.editedTask].name = this.task;
+          this.tasks[this.editedTask].category = this.category;
+          this.editedTask = null;
+          this.task = '';
+          this.category = '';
+          this.taskMessage = 'Task Update Successfully';
+          this.taskStatus = 'task-update';
+        }
       }
-
-      this.task = '';
-      this.category = '';
     },
     editTaskHandler(index) {
       this.task = this.tasks[index].name
       this.category = this.tasks[index].category
-      this.editedTask = index
+      this.editedTask = index;
     },
     deleteTaskHandler(index) {
-      this.tasks.splice(index,1)
-    }
+      this.tasks.splice(index,1);
+      this.taskMessage = 'Task Delete Successfully';
+      this.taskStatus = 'task-delete';
+    },
   }
 }
 </script>
