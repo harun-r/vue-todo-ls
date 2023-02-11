@@ -1,8 +1,16 @@
 <template src="./TodoApp.html"></template>
 <script>
+import IconEdit from "@/components/svg-icons/icon-edit/IconEdit.vue";
+import IconDelete from "@/components/svg-icons/icon-delete/IconDelete.vue";
+import IconFile from "@/components/svg-icons/icon-file/IconFile.vue";
 
 export default {
   name: "TodoApp",
+  components:{
+    IconFile,
+    IconEdit,
+    IconDelete
+  },
   data() {
     return{
       task: '',
@@ -10,7 +18,7 @@ export default {
       editedTask: null,
       taskMessage: '',
       taskStatus: '',
-      tasks: []
+      tasks: [],
     }
   },
   methods:{
