@@ -25,17 +25,20 @@
         <div class="task-list-wrap" v-if="tasks.length > 0">
             <div class="task-list" v-for="(task, index) in tasks" :key="index">
                 <div class="task-item">
-                    <span>{{ task.name }}</span>
+                    <span :class="task.status ? 'line-through' : ''">{{ task.name }}</span>
                 </div>
                 <div class="task-item">
-                    <span>{{ task.category }}</span>
+                    <span>{{ task.cat }}</span>
                 </div>
                 <div class="task-item">
                     <div class="action-wrap">
-                        <button class="btn btn-edit" @click="editTaskHandler(index)">
+                        <button title="Complete" class="btn btn-complete" @click="completeTaskHandler(index)">
+                            <IconCheck />
+                        </button>
+                        <button title="Edit" :class="task.status ? 'btn-disabled' : ''" class="btn btn-edit" @click="editTaskHandler(index)">
                             <IconEdit />
                         </button>
-                        <button :class="isEditEnable ? 'btn-disabled' : ''" class="btn btn-delete" @click="deleteTaskHandler(index)">
+                        <button title="Delete" :class="isEditEnable ? 'btn-disabled' : ''" class="btn btn-delete" @click="deleteTaskHandler(index)">
                             <IconDelete />
                         </button>
                     </div>

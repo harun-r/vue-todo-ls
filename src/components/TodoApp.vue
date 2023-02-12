@@ -2,13 +2,14 @@
 import IconEdit from "@/components/svg-icons/icon-edit/IconEdit.vue";
 import IconDelete from "@/components/svg-icons/icon-delete/IconDelete.vue";
 import IconFile from "@/components/svg-icons/icon-file/IconFile.vue";
-
+import IconCheck from "@/components/svg-icons/icon-check/IconCheck.vue";
 export default {
   name: "TodoApp",
   components:{
     IconFile,
     IconEdit,
-    IconDelete
+    IconDelete,
+    IconCheck
   },
   data() {
     return {
@@ -18,7 +19,8 @@ export default {
       taskMessage: '',
       taskStatus: '',
       tasks: [],
-      isEditEnable: false
+      isEditEnable: false,
+      isComplete: false
     }
   },
   mounted() {
@@ -54,7 +56,8 @@ export default {
       if(this.editedTask === null) {
         this.tasks.unshift({
           name: this.task,
-          category: this.category
+          cat: this.category,
+          status: this.isComplete
         });
         this.task = '';
         this.category = '';
@@ -71,6 +74,9 @@ export default {
         this.taskStatus = 'task-add';
         this.isEditEnable = false
       }
+    },
+    completeTaskHandler(index) {
+      this.tasks[index].status = true
     },
     editTaskHandler(index) {
       this.task = this.tasks[index].name
