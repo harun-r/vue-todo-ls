@@ -197,6 +197,10 @@
           fill: #fff;
         }
       }
+      &.btn-disabled{
+        pointer-events: none;
+        cursor: not-allowed;
+      }
       &.btn-delete{
         background-color: #e74c3c;
         margin-left: 12px;

@@ -12,13 +12,13 @@ export default {
   },
   data() {
     return {
-      buttonTxt: true,
       task: '',
       category: '',
       editedTask: null,
       taskMessage: '',
       taskStatus: '',
       tasks: [],
+      isEditEnable: false
     }
   },
   mounted() {
@@ -69,14 +69,14 @@ export default {
         this.category = '';
         this.taskMessage = 'Task update successfully';
         this.taskStatus = 'task-add';
-        this.buttonTxt = true
+        this.isEditEnable = false
       }
     },
     editTaskHandler(index) {
       this.task = this.tasks[index].name
       this.category = this.tasks[index].category
-      this.buttonTxt = false
       this.editedTask = index
+      this.isEditEnable = true
     },
     deleteTaskHandler(index) {
       this.tasks.splice(index,1);
